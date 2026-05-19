@@ -1,0 +1,30 @@
+# Filter by Different Object Types
+# IP addresses
+event.changed_object_type == "ipam.ipaddress"
+
+# Sites
+event.changed_object_type == "dcim.site"
+
+# Circuits
+event.changed_object_type == "circuits.circuit"
+
+
+# Filter by Action
+# Only creations
+event.action.value == "create"
+
+# Only deletions
+event.action.value == "delete"
+
+# Create or update
+event.action.value in ["create", "update"]
+
+
+#Add Additional Filters
+# Only devices in a specific site
+event.changed_object_type == "dcim.device"
+and event.changed_object.site.name == "DC-01"
+
+# Only devices with a specific tag
+event.changed_object_type == "dcim.device"
+and "production" in event.changed_object.tags
